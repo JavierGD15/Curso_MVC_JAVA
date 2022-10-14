@@ -48,6 +48,7 @@ public class ColegioDAO {
             ps.executeUpdate();
 
         } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -73,19 +74,7 @@ public class ColegioDAO {
             ps = con.prepareStatement(sql);
             ps.setInt(1, codigo);
             ps.executeUpdate();
-
         } catch (Exception e) {
         }
-
-    }
-
-    public static void main(String[] args) {
-        ColegioDAO cl = new ColegioDAO();
-        cl.listar();
-
-        System.out.println("///////////////////////////////////");
-        cl.eliminar(2);
-//        cl.crear(3, "James", "Santa Rosa", 31213456);
-        cl.listar();
     }
 }
