@@ -18,10 +18,6 @@ public class conexion {
             System.out.println("error:");
             System.out.println(e);
         }      
-        return con;
-        
-    }
-    
-    
-    
+        return con;   
+    }    
 }

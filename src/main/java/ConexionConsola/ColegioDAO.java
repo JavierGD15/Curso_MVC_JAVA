@@ -3,6 +3,8 @@ package ConexionConsola;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ColegioDAO {
 
@@ -11,7 +13,7 @@ public class ColegioDAO {
     ResultSet rs;
     conexion acceso = new conexion();
 
-    public void listar() {
+    public ArrayList listar() {
 
         String sql = "select * from alumnos";
 
@@ -21,17 +23,25 @@ public class ColegioDAO {
             con = acceso.Conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-
+            ArrayList<alumno> datos = new ArrayList<alumno>();
+            
             while (rs.next()) {
-                System.out.println("*****************************");
-                System.out.println("Id: " + rs.getInt(1));
-                System.out.println("Nombre: " + rs.getString(2));
-                System.out.println("Direccion: " + rs.getString(3));
-                System.out.println("Telefono: " + rs.getInt(4));
+                alumno al = new alumno();
+                al.setCodigo(rs.getInt(1));
+                al.setNombre(rs.getString(2)); 
+                al.setDireccion(rs.getString(3));
+                al.setTelefono(rs.getInt(4));
+                datos.add(al);
             }
+            
+            return datos;
+            
+            
         } catch (Exception e) {
-
+            System.out.println(e);
         }
+        
+        return null;
 
     }
 
@@ -76,5 +86,10 @@ public class ColegioDAO {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+    
+    public static void main(String[] args) {
+        ColegioDAO dl = new ColegioDAO();
+        dl.listar();
     }
 }
