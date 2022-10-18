@@ -1,6 +1,7 @@
-package ConexionConsola;
+package VistasConCodigo;
 
 
+import ConexionConsola.ColegioDAO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;

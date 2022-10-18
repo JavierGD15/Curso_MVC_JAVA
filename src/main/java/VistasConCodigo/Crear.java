@@ -1,23 +1,23 @@
-package ConexionConsola;
+package VistasConCodigo;
 
+import ConexionConsola.ColegioDAO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Modificar extends JFrame {
-    
+public class Crear extends JFrame{
+
     JTextField txtCodigo = new JTextField();
     JTextField txtNombre = new JTextField();
     JTextField txtDireccion = new JTextField();
     JTextField txtTelefono = new JTextField();
     
     public void vista (){
-        this.setTitle("Modificar");
+        this.setTitle("Crear");
         this.setSize(500, 350);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -54,37 +54,29 @@ public class Modificar extends JFrame {
         ActionListener crear = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               modificar();
+               guardar();
 
             }
         };
+
         //Acción del evento
         btnCrear.addActionListener(crear);
+
         panel.add(btnCrear);
         panel.add(txtCodigo);
         panel.add(txtNombre);
         panel.add(txtDireccion);
         panel.add(txtTelefono);
-
-
-
     }
 
-    public void modificar(){
-        ColegioDAO colegioDAO = new ColegioDAO();
-        colegioDAO.modificar(Integer.parseInt(txtCodigo.getText()), 
-        txtNombre.getText(), txtDireccion.getText(), Integer.parseInt(txtTelefono.getText()));
 
-        txtCodigo.setText("");
-        txtNombre.setText("");
-        txtDireccion.setText("");
-        txtTelefono.setText("");
-        
+    public void guardar(){
+        ColegioDAO cl = new ColegioDAO();
+        cl.crear(Integer.parseInt(txtCodigo.getText()), txtNombre.getText(), txtDireccion.getText(), Integer.parseInt(txtTelefono.getText()));
+
     }
-
     public static void main(String[] args) {
-        Modificar modificar = new Modificar();
-        modificar.vista();
+        Crear c = new Crear();
+        c.vista();
     }
-
 }

@@ -1,5 +1,6 @@
-package ConexionConsola;
+package VistasConCodigo;
 
+import ConexionConsola.ColegioDAO;
 import java.awt.Color;
 import java.util.Scanner;
 import javax.swing.JFrame;

@@ -1,5 +1,5 @@
 
-package ConexionConsola;
+package VistasConCodigo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

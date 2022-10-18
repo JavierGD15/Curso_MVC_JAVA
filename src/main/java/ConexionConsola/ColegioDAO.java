@@ -1,5 +1,7 @@
 package ConexionConsola;
 
+import VistasConCodigo.conexion;
+import VistasConCodigo.alumno;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,6 +88,49 @@ public class ColegioDAO {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+    
+    public void buscar(int codigo){
+    //SELECT * FROM `alumnos` WHERE carnet=201800555; ejemplo
+    String sql = "select * from alumnos where codigo ="+codigo;
+        try {
+            con = acceso.Conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Modificar_vista mv = new Modificar_vista();
+                mv.mostrar(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                mv.setVisible(true);
+                
+            }else{
+                System.out.println("Codigo invalido");
+            }
+        } catch (Exception e) {
+        }
+    }
+    
+    public void buscar_eliminar(int codigo){
+        String sql = "select * from alumnos where codigo ="+codigo;
+        try {
+            con = acceso.Conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Eliminar elim = new Eliminar();
+                elim.txtCodigo.setText(rs.getInt(1)+"");
+                elim.txtNombre.setText( rs.getString(2));
+                elim.txtDireccion.setText(rs.getString(3));
+                elim.txtTelefono.setText(rs.getInt(4)+"");
+                elim.setVisible(true);
+                
+            }else{
+                System.out.println("Codigo invalido");
+            }
+        } catch (Exception e) {
+        }
+    
+    
+    
     }
     
     public static void main(String[] args) {

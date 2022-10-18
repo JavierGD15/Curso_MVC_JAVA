@@ -4,6 +4,7 @@
  */
 package ConexionConsola;
 
+import VistasConCodigo.alumno;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -57,6 +58,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
 
         jButton3.setText("Eliminar Alumno");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,6 +110,12 @@ public class Menu_Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      cl.buscar_eliminar(Integer.parseInt(Tabla_general.getValueAt
+        (Tabla_general.getSelectedRow(), 0).toString())); 
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     public void Tabla() {
         
         datos = cl.listar();
@@ -124,36 +136,13 @@ public class Menu_Principal extends javax.swing.JFrame {
     }
 
     public void mostrar() {
-
-        int fila = Tabla_general.getSelectedRow();
-        System.out.println(datos.get(fila).getNombre());
+        cl.buscar(Integer.parseInt(Tabla_general.getValueAt
+        (Tabla_general.getSelectedRow(), 0).toString())); 
+        dispose();
     }
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu_Principal().setVisible(true);
